@@ -8,12 +8,12 @@ def create_game():
     '''
     Function used to add the random items inside the board list
     '''
-    for _ in range(2):
-        array = range(1, 6)
+    for _ in list(range(2)):
+        array = list(range(1, 6))
         numpy.random.shuffle(array)
         board.append(array)
 
-        array = range(6, 11)
+        array = list(range(6, 11))
         numpy.random.shuffle(array)
         board.append(array)
 
@@ -26,9 +26,9 @@ def print_board():
     '''
     current_element = 1
 
-    for i in range(4):
-        for j in range(5):
-            print(str(current_element) + ')' + str(board[i][j]) + '\t'),
+    for i in list(range(4)):
+        for j in list(range(5)):
+            print(str(current_element) + ')' + str(board[i][j]) + '\t', end='')
             positions_dict[current_element] = [i, j]
             current_element += 1
         print('\n')
@@ -89,7 +89,7 @@ def start_game():
         print_board()
 
         while True:
-            point_first_number = raw_input('Casilla 1: ')
+            point_first_number = input('Casilla 1: ')
 
             status_first_point = validate_point(point_first_number)
 
@@ -99,7 +99,7 @@ def start_game():
                 print(status_first_point['message'])
 
         while True:
-            point_second_number = raw_input('Casilla 2: ')
+            point_second_number = input('Casilla 2: ')
 
             status_second_point = validate_point(point_second_number)
 
@@ -121,7 +121,7 @@ def start_game():
                 board[pos_x_first_number][pos_y_first_number] = ''
                 board[pos_x_second_number][pos_y_second_number] = ''
 
-                user_wants_continue = raw_input('Continue? (s): ')
+                user_wants_continue = input('Continue? (s): ')
             else:
                 print('Both numbers should be equals')
         else:
