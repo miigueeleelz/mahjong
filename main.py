@@ -27,5 +27,26 @@ def print_board():
 
 
 if __name__ == "__main__":
+def validate_point(point):
+    '''
+    Function used to validate the point typed by the user
+    '''
+    response = dict()
+
+    if (point.isdigit() is False):
+        response['code'] = 'ERROR'
+        response['message'] = 'The typed value is not valid'
+
+        return response
+
+    if int(point) not in positions_dict.keys():
+        response['code'] = 'ERROR'
+        response['message'] = 'The typed value does not exist'
+
+        return response
+
+    response['code'] = 'OK'
+
+    return response
     create_game()
     print_board()
