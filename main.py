@@ -26,7 +26,6 @@ def print_board():
         print('\n')
 
 
-if __name__ == "__main__":
 def validate_point(point):
     '''
     Function used to validate the point typed by the user
@@ -126,5 +125,7 @@ def start_game():
 
         if (numpy.sum(board == '') == 20 or user_wants_continue.lower() == 'n'):
             break
+
+
+if __name__ == '__main__':
     create_game()
-    print_board()
