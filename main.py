@@ -1,6 +1,7 @@
 import numpy
 
 board = list()
+positions_dict = dict()
 
 
 def create_game():
@@ -22,6 +23,7 @@ def print_board():
     for i in range(4):
         for j in range(5):
             print(str(current_element) + ')' + str(board[i][j]) + '\t'),
+            positions_dict[current_element] = [i, j]
             current_element += 1
         print('\n')
 
