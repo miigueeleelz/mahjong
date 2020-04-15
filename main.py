@@ -48,5 +48,27 @@ def validate_point(point):
     response['code'] = 'OK'
 
     return response
+
+
+def check_point(point):
+    '''
+    Function used to check is the point is valid to remove
+    '''
+    response = dict()
+
+    x, y = positions_dict[int(point)]
+
+    if board[x][y] == '':
+        response['code'] = 'ERROR'
+        response['message'] = 'The point is empty'
+        return response
+
+    if y > 0 and y < 4 and (board[x][y + 1] != '' and board[x][y - 1] != ''):
+        response['code'] = 'ERROR'
+        response['message'] = 'The point is not on the shore'
+        return response
+
+    response['code'] = 'OK'
+    return response
     create_game()
     print_board()
