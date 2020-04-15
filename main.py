@@ -70,5 +70,61 @@ def check_point(point):
 
     response['code'] = 'OK'
     return response
+
+
+def start_game():
+    '''
+    Function used to handle the game logic
+    '''
+    user_wants_continue = 's'
+
+    while True:
+        print_board()
+
+        while True:
+            point_first_number = raw_input('Casilla 1: ')
+
+            status_first_point = validate_point(point_first_number)
+
+            if (status_first_point['code'] == 'OK'):
+                break
+            else:
+                print(status_first_point['message'])
+
+        while True:
+            point_second_number = raw_input('Casilla 2: ')
+
+            status_second_point = validate_point(point_second_number)
+
+            if (status_second_point['code'] == 'OK' and point_first_number != point_second_number):
+                break
+            elif point_first_number == point_second_number:
+                print("The second point should be different from the first point")
+            else:
+                print(status_second_point['message'])
+
+        status_first_point = check_point(point_first_number)
+        status_second_point = check_point(point_second_number)
+
+        if status_first_point['code'] == 'OK' and status_second_point['code'] == 'OK':
+            pos_x_first_number, pos_y_first_number = positions_dict[int(point_first_number)]
+            pos_x_second_number, pos_y_second_number = positions_dict[int(point_second_number)]
+
+            if board[pos_x_first_number][pos_y_first_number] == board[pos_x_second_number][pos_y_second_number]:
+                board[pos_x_first_number][pos_y_first_number] = ''
+                board[pos_x_second_number][pos_y_second_number] = ''
+
+                user_wants_continue = raw_input('Continue? (s): ')
+            else:
+                print('Both numbers should be equals')
+        else:
+            if status_first_point['code'] == 'ERROR':
+                print('Point 1: ' + status_first_point['message'])
+
+            if status_second_point['code'] == 'ERROR':
+                print('Point 2: ' + status_second_point['message'])
+
+        if (numpy.sum(board == '') == 20 or user_wants_continue.lower() == 'n'):
+            break
     create_game()
     print_board()
