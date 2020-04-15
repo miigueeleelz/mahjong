@@ -5,6 +5,9 @@ positions_dict = dict()
 
 
 def create_game():
+    '''
+    Function used to add the random items inside the board list
+    '''
     for _ in range(2):
         array = range(1, 6)
         numpy.random.shuffle(array)
@@ -18,6 +21,9 @@ def create_game():
 
 
 def print_board():
+    '''
+    Function used to print the board previously created
+    '''
     current_element = 1
 
     for i in range(4):
